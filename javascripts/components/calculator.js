@@ -1,20 +1,20 @@
 import {printToDom} from '../helpers/util.js';
-import {multiply} from '../helpers/maths.js';
+import {add, divide, multiply, subtract} from '../helpers/maths.js';
 
 const calculate = (num1, num2, mathType) => {
     let answer = 0;
     switch(mathType) {
         case 'multiply':
-            answer = multiply(num1, num2)
+            answer = multiply(num1, num2);
             break;
         case 'divide':
-            answer = num1 / num2
+            answer = divide(num1, num2);
             break;
         case 'add':
-            answer = num1 + num2;
+            answer = add(num1, num2);
             break;
         case 'subtract':
-            answer = num1-num2
+            answer = subtract(num1, num2);
             break;
         default:
             answer ='nope'; 
