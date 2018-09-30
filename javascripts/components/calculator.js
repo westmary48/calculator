@@ -1,25 +1,53 @@
 import {printToDom} from '../helpers/util.js';
-import {multiply} from '../helpers/maths.js';
+import {add, divide, multiply, subtract} from '../helpers/maths.js';
 
-const calculate = (num1, num2, mathType) => {
+const calc = {
+    firstNumber: '',
+    secondNumber: '',
+    mathType: '',
+    display: '', 
+};
+
+const calculate = () => {
     let answer = 0;
-    switch(mathType) {
+    switch(calc.mathType) {
         case 'multiply':
-            answer = multiply(num1, num2)
+            answer = multiply(calc.firstNumber, calc.secondNumber);
             break;
         case 'divide':
-            answer = num1 / num2
+            answer = divide(calc.firstNumber, calc.secondNumber);
             break;
         case 'add':
-            answer = num1 + num2;
+            answer = add(calc.firstNumber, calc.secondNumber);
             break;
         case 'subtract':
-            answer = num1-num2
+            answer = subtract(calc.firstNumber, calc.secondNumber);
             break;
         default:
             answer ='nope'; 
     }
-    printToDom(answer, 'result');
+    setDisplay(answer);
 };
 
-export {calculate};
+const setDisplay = (someNumber) => {
+    calc.display = someNumber;
+    printToDom(calc.display, 'result');
+};
+const setMathType = (newMathType) => {
+    calc.mathType = newMathType;
+};
+
+const initialDisplay = () => {
+    printToDom(0, 'result');
+}
+const addNumber = (num) => {
+if(calc.mathType === '') {
+    calc.firstNumber += num;
+    setDisplay(calc.firstNumber);
+} else {
+    calc.secondNumber += num;
+    setDisplay(calc.secondNumber);
+}
+};
+
+export {calculate, addNumber, initialDisplay, setMathType};
